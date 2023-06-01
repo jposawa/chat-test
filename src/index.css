@@ -1,0 +1,85 @@
+/*RESETS*/
+
+/*Reseting margin, padding and other properties to have unexpected behaviors*/
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+/*Setting the root font-size to 62.5 (default 10px) for better control, responsivity and smoother scaling*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  /*Make it back to browser size configuration*/
+  font-size: 1.6rem;
+
+  /*SETTING default colors*/
+  /*Made using hsl for easier update if needed since it follows the chromatic circle*/
+  --mainColor: hsl(210, 50%, 40%);
+  --mainColorLight: hsl(210, 50%, 50%);
+  --mainColorLighter: hsl(210, 50%, 60%);
+  --mainColorDark: hsl(210, 50%, 30%);
+  --mainColorDarker: hsl(210, 50%, 20%);
+
+  --complementColor: hsl(30, 50%, 40%);
+  --complementColorLight: hsl(30, 50%, 50%);
+  --complementColorLighter: hsl(30, 50%, 60%);
+  --complementColorDark: hsl(30, 50%, 30%);
+  --complementColorDarker: hsl(30, 50%, 20%);
+
+  --secondaryColor: hsl(150, 50%, 40%);
+  --secondaryColorLight: hsl(150, 50%, 50%);
+  --secondaryColorLighter: hsl(150, 50%, 60%);
+  --secondaryColorDark: hsl(150, 50%, 30%);
+  --secondaryColorDarker: hsl(150, 50%, 20%);
+
+  --secondaryAltColor: hsl(270, 50%, 40%);
+  --secondaryAltColorLight: hsl(270, 50%, 50%);
+  --secondaryAltColorLighter: hsl(270, 50%, 60%);
+  --secondaryAltColorDark: hsl(270, 50%, 30%);
+  --secondaryAltColorDarker: hsl(270, 50%, 20%);
+
+  --totalWhiteColor: hsl(0, 0%, 100%);
+  --whiteColor: hsl(0, 0%, 95%);
+  --greyColorLight: hsl(0, 0%, 80%);
+  --greyColorLighter: hsl(0, 0%, 85%);
+  --greyColor: hsl(0, 0%, 50%);
+  --greyColorDark: hsl(0, 0%, 30%);
+  --greyColorDarker: hsl(0, 0%, 20%);
+  --totalBlackColor: hsl(0, 0%, 0%);
+  --blackColor: hsl(0, 0%, 5%);
+
+  --redColor: hsl(0, 50%, 40%);
+}
+
+/*DEFAULT SETTINGS*/
+p {
+  font-size: 1.6rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.6rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 2.2rem;
+}
+
+h5 {
+  font-size: 2rem;
+}

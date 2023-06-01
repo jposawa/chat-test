@@ -1,0 +1,20 @@
+.mainWrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  color: var(--textColor);
+  background: var(--bgColor);
+  border: 2px solid red;
+}
+
+.mainTheme {
+  --textColor: var(--blackColor);
+  --bgColor: var(--whiteColor);
+}
+
+.darkMode {
+  --textColor: var(--whiteColor);
+  --bgColor: var(--blackColor);
+
+  border-color: blue;
+}
