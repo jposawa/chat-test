@@ -1,12 +1,71 @@
 .mainWrapper {
+  --defaultTransitionTime: 300ms;
+
   position: relative;
   width: 100vw;
   height: 100vh;
   color: var(--textColor);
   background: var(--bgColor);
+  transition: color var(--defaultTransitionTime) linear,
+    background var(--defaultTransitionTime) linear;
+  display: flex;
+  flex-direction: column;
+
+  & > section {
+    position: relative;
+    border: 2px solid;
+  }
+
+  .messagesList {
+    height: 65%;
+    border-color: red;
+  }
+
+  .userWrapper {
+    height: 35%;
+    border-color: blue;
+    display: flex;
+    flex-direction: column;
+
+    .chatSettings {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .userSettings {
+        display: flex;
+        gap: 0.5rem;
+        & > button {
+          background: none;
+          border: none;
+        }
+      }
+    }
+
+    .messageWrapper {
+      border: 2px solid orange;
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+
+      & > textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+      }
+
+      & > button {
+        --size: 4rem;
+
+        width: var(--size);
+        height: var(--size);
+      }
+    }
+  }
 }
 
-.mainTheme {
+.lightTheme {
   --textColor: var(--blackColor);
   --bgColor: var(--whiteColor);
 }
@@ -14,4 +73,10 @@
 .darkTheme {
   --textColor: var(--whiteColor);
   --bgColor: var(--blackColor);
+}
+
+@media screen and (min-width: 889px) {
+  .userWrapper {
+    padding: 0 2rem;
+  }
 }

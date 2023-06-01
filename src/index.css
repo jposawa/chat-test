@@ -11,6 +11,10 @@
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+button, a {
+  cursor: pointer;
+}
+
 /*Setting the root font-size to 62.5 (default 10px) for better control, responsivity and smoother scaling*/
 html {
   font-size: 62.5%;

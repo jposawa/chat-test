@@ -1,20 +1,76 @@
 import React from "react";
+import { CaretRightOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
-import styles from './App.module.css';
+import styles from "./App.module.css";
 
 export default function App() {
-  const [activeTheme, setActiveTheme] = React.useState("mainTheme");
+  const [activeTheme, setActiveTheme] = React.useState("lightTheme");
+  const [username, setUsername] = React.useState("User");
+  const [messagesList, setMessagesList] = React.useState([]);
+  const [currentMessage, setCurrentMessage] = React.useState();
 
+  const handleThemeSwitch = () => {
+    setActiveTheme(activeTheme === "lightTheme" ? "darkTheme" : "lightTheme");
+  };
 
+  const handleNameUpdate = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+
+    setUsername(form.username.value);
+  };
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const newMessage = form?.messageField?.value || "";
+    // form.messageField.value = "";
+    setCurrentMessage("");
+
+    setMessagesList([...messagesList, newMessage.trim()]);
+  };
 
   return (
     <div className={`${styles[activeTheme]} ${styles.mainWrapper}`}>
-      <h1>Header 1</h1>
-      <h2>Header 2</h2>
-      <h3>Header 3</h3>
-      <h4>Header 4</h4>
-      <h5>Header 5</h5>
-      <p>Paragraph</p>
+      <section className={styles.messagesList}>
+        {messagesList.map((message, index) => (
+          <p key={`msg${index}`}>
+            <b>{username}:</b> {message}
+          </p>
+        ))}
+      </section>
+
+      <section className={styles.userWrapper}>
+        <div className={styles.chatSettings}>
+          <form className={styles.userSettings} onSubmit={handleNameUpdate}>
+            <input name="username" type="text" defaultValue={username} />
+            <button type="submit">
+              <CheckCircleOutlined />
+            </button>
+          </form>
+          <button type="button" onClick={handleThemeSwitch}>
+            Switch to {activeTheme === "lightTheme" ? "Dark" : "Light"} theme
+          </button>
+        </div>
+
+        <form className={styles.messageWrapper} onSubmit={sendMessage}>
+          <textarea
+            name="messageField"
+            value={currentMessage}
+            onChange={({ target: field }) => {
+              setCurrentMessage(field?.value?.trim());
+            }}
+          ></textarea>
+          <button
+            type="submit"
+            disabled={!currentMessage || currentMessage === ""}
+          >
+            <CaretRightOutlined />
+          </button>
+        </form>
+      </section>
     </div>
   );
 }
