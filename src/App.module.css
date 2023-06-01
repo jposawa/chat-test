@@ -4,7 +4,6 @@
   height: 100vh;
   color: var(--textColor);
   background: var(--bgColor);
-  border: 2px solid red;
 }
 
 .mainTheme {
@@ -12,9 +11,7 @@
   --bgColor: var(--whiteColor);
 }
 
-.darkMode {
+.darkTheme {
   --textColor: var(--whiteColor);
   --bgColor: var(--blackColor);
-
-  border-color: blue;
 }
