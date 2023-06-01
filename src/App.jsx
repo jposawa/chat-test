@@ -2,6 +2,7 @@ import React from "react";
 import { CaretRightOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 import styles from "./App.module.css";
+import { loadSessionStorage, saveSessionStorage } from "./utils";
 
 export default function App() {
   const [activeTheme, setActiveTheme] = React.useState("lightTheme");
@@ -17,8 +18,10 @@ export default function App() {
     event.preventDefault();
 
     const form = event.target;
+    const newUsername = form?.username?.value || "User";
 
-    setUsername(form.username.value);
+    saveSessionStorage("username", newUsername);
+    setUsername(newUsername);
   };
 
   const sendMessage = (event) => {
@@ -26,11 +29,20 @@ export default function App() {
 
     const form = event.target;
     const newMessage = form?.messageField?.value || "";
-    // form.messageField.value = "";
+    const newList = [...messagesList, newMessage.trim()];
+    
+    saveSessionStorage("messages", newList, true);
     setCurrentMessage("");
-
-    setMessagesList([...messagesList, newMessage.trim()]);
+    setMessagesList(newList);
   };
+
+  React.useEffect(() => {
+    const sessionMessages = loadSessionStorage("messages", true);
+    const sessionUsername = loadSessionStorage("username");
+
+    setUsername(sessionUsername || "User");
+    setMessagesList(sessionMessages || []);
+  }, []);
 
   return (
     <div className={`${styles[activeTheme]} ${styles.mainWrapper}`}>
