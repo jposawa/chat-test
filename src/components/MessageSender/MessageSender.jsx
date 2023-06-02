@@ -17,9 +17,19 @@ export const MessageSender = ({ className }) => {
   const [messagesList, setMessagesList] = useRecoilState(messagesListState);
   const activeTheme = useRecoilValue(themeState);
   const shouldEnterSend = useRecoilValue(shouldEnterSendState);
+  const textAreaRef = React.useRef();
 
   const handleMessageChange = ({ target: field }) => {
     setCurrentMessage(field?.value);
+  };
+
+  const calcTextareaHeight = (text) => {
+    const numLineBreaks = (text.match(/\n/g) || []).length;
+    const newHeight = 20 + numLineBreaks * 11;
+
+    console.log("num line breaks", numLineBreaks);
+    console.log("newHeight", newHeight);
+    return newHeight;
   };
 
   const handleKeyDown = (event) => {
@@ -44,6 +54,10 @@ export const MessageSender = ({ className }) => {
     }
   };
 
+  React.useEffect(() => {
+    textAreaRef.current.style.height = calcTextareaHeight(currentMessage);
+  }, [currentMessage]);
+
   return (
     <section className={`${styles.messageSender} ${className}`}>
       <ChatSettings className={styles.chatSettings} />
@@ -58,6 +72,7 @@ export const MessageSender = ({ className }) => {
           }
         >
           <span />
+
           <textarea
             name="messageField"
             title="Your message"
@@ -65,6 +80,10 @@ export const MessageSender = ({ className }) => {
             value={currentMessage}
             onChange={handleMessageChange}
             onKeyDown={handleKeyDown}
+            ref={textAreaRef}
+            style={{
+              height: calcTextareaHeight(currentMessage),
+            }}
           />
         </span>
 
