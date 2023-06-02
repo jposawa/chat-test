@@ -31,6 +31,12 @@ export const ChatSettings = ({ className }) => {
     saveSessionStorage("enterSend", checked);
   };
 
+  const handleNameInputChange = ({ target: field }) => {
+    const newName = field?.value?.trim();
+
+    setUsernameInput(newName);
+  };
+
   const handleNameUpdate = (event) => {
     event.preventDefault();
 
@@ -52,11 +58,7 @@ export const ChatSettings = ({ className }) => {
           name="username"
           type="text"
           value={usernameInput}
-          onChange={({ target: field }) => {
-            const newName = field?.value?.trim();
-
-            setUsernameInput(newName);
-          }}
+          onChange={handleNameInputChange}
         />
         <button type="submit">
           <CheckOutlined />
