@@ -1,4 +1,4 @@
-export const PREFIX = "jpo_chat";
+import { PREFIX } from "../constants";
 
 export const cloneObject = (obj) => {
   return JSON.parse(JSON.stringify(obj));
