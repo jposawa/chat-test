@@ -3,10 +3,9 @@
 .messagesList {
   --lineBackground: var(--bgLineColor, var(--greyColor));
 
-  height: 65%;
+  max-height: 70%;
   @include dFlex(column, flex-start);
   align-items: flex-start;
-  border: 2px solid red;
   overflow: auto;
 
   & > pre {

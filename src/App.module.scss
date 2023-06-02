@@ -8,7 +8,7 @@
   background: var(--bgColor);
   transition: color var(--defaultTransitionTime) linear,
     background var(--defaultTransitionTime) linear;
-  @include dFlex(column);
+  @include dFlex(column, flex-end);
   overflow: hidden;
 
   & > section {

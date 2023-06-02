@@ -1,9 +1,9 @@
 @import "../../mixins.scss";
 
 .messageSender {
-  height: 35%;
-  border-top: 2px solid var(--secondaryAltColor);
+  height: 30%;
   @include dFlex(column, flex-start);
+  box-shadow: 0 -4px 1rem rgba(0,0,0,0.3);
 
   .chatSettings {
     width: 100%;
@@ -25,6 +25,7 @@
     height: 100%;
     @include dFlex(row, flex-start);
     align-items: flex-end;
+    overflow: hidden;
 
     & > button {
       --size: 4rem;
@@ -45,23 +46,29 @@
       width: 100%;
       height: 100%;
       border: none;
+      @include dFlex(column, flex-end);
 
       & > span {
-        @include fullContainerAbsolute();
-        background: var(--bg);
-        opacity: 0.5;
-        z-index: 0;
+        &:first-child {
+          @include fullContainerAbsolute();
+          background: var(--bg);
+          opacity: 0.5;
+          z-index: 0;
+        }
       }
 
       & > textarea {
         position: relative;
         width: 100%;
-        height: 100%;
+        max-height: 100%;
+        min-height: 35%;
         resize: none;
         z-index: 2;
         outline: none;
         background: none;
         color: var(--textColor);
+        transition: height 300ms linear;
+        border-radius: 5px;
       }
     }
   }
