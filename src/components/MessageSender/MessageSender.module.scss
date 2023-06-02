@@ -3,7 +3,6 @@
 .messageSender {
   height: 30%;
   @include dFlex(column, flex-start);
-  box-shadow: 0 -4px 1rem rgba(0,0,0,0.3);
 
   .chatSettings {
     width: 100%;
