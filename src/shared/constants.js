@@ -1,0 +1,1 @@
+export const PREFIX = "jpo_chat";
