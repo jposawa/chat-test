@@ -79,8 +79,8 @@ export const MessageSender = ({ className }) => {
                 : undefined
             }
           >
-            <span />
-
+            <span style={{ height: calcTextareaHeight(currentMessage) }} />
+            {/*This textarea could be inside above span for dynamic size and background. Actually I could set the "semitransparent" background within textarea itself. But to better follow dynamically the colors variables, I opted to do this way*/}
             <textarea
               name="messageField"
               title="Your message"
