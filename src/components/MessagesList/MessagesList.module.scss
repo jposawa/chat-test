@@ -1,0 +1,10 @@
+.messagesList {
+  height: 65%;
+  border-color: red;
+  overflow: auto;
+
+  & > p {
+    border: 1px solid purple;
+    white-space: pre;
+  }
+}

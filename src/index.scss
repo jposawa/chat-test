@@ -87,3 +87,15 @@ h4 {
 h5 {
   font-size: 2rem;
 }
+
+/*SOME GLOBAL CLASSES*/
+
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.collapse {
+  max-width: 0 !important;
+  max-height: 0 !important;
+}

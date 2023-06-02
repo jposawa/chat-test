@@ -1,4 +1,4 @@
-import styles from "./MessagesList.module.css";
+import styles from "./MessagesList.module.scss";
 import { useRecoilValue } from "recoil";
 import { messagesListState, usernameState } from "../../shared/state";
 import PropTypes from "prop-types";

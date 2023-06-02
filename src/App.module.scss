@@ -1,0 +1,31 @@
+@import "./mixins.scss";
+
+.mainWrapper {
+  --defaultTransitionTime: 300ms;
+
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  color: var(--textColor);
+  background: var(--bgColor);
+  transition: color var(--defaultTransitionTime) linear,
+    background var(--defaultTransitionTime) linear;
+  @include dFlex(column, flex-start);
+
+  & > section {
+    width: 100%;
+    position: relative;
+    border: 2px solid;
+  }
+}
+
+.lightTheme {          
+  --textColor: var(--blackColor);
+  --bgColor: var(--whiteColor);
+}
+
+.darkTheme {
+  --textColor: var(--whiteColor);
+  --bgColor: var(--blackColor);
+}
+

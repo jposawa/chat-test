@@ -10,7 +10,7 @@ import { ChatSettings } from "../ChatSettings";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 
-import styles from "./MessageSender.module.css";
+import styles from "./MessageSender.module.scss";
 
 export const MessageSender = ({ className }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
@@ -41,7 +41,7 @@ export const MessageSender = ({ className }) => {
   };
 
   return (
-    <section className={`${styles.userWrapper} ${className}`}>
+    <section className={`${styles.messageSender} ${className}`}>
       <ChatSettings className={styles.chatSettings} />
 
       <form className={styles.messageWrapper} onSubmit={sendMessage}>
@@ -66,6 +66,7 @@ export const MessageSender = ({ className }) => {
 
         <button
           type="submit"
+          className={shouldEnterSend ? "hidden collapse" : ""}
           disabled={!currentMessage || currentMessage === ""}
         >
           <CaretRightOutlined />

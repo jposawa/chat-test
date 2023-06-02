@@ -1,24 +1,33 @@
-import styles from "./ChatSettings.module.css";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import styles from "./ChatSettings.module.scss";
+import { useRecoilState } from "recoil";
 import {
   shouldEnterSendState,
   themeState,
   usernameState,
 } from "../../shared/state";
 import PropTypes from "prop-types";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import { CheckOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
+import React from "react";
+import { Switch } from "antd";
 
 export const ChatSettings = ({ className }) => {
   const [username, setUsername] = useRecoilState(usernameState);
   const [activeTheme, setActiveTheme] = useRecoilState(themeState);
-  const setShouldEnterSend = useSetRecoilState(shouldEnterSendState);
+  const [shouldEnterSend, setShouldEnterSend] =
+    useRecoilState(shouldEnterSendState);
+  const [usernameInput, setUsernameInput] = React.useState(username);
 
   const handleThemeSwitch = () => {
     const newTheme = activeTheme === "lightTheme" ? "darkTheme" : "lightTheme";
 
     setActiveTheme(newTheme);
     saveSessionStorage("theme", newTheme);
+  };
+
+  const handleSwitchEnterSend = (checked) => {
+    setShouldEnterSend(checked);
+    saveSessionStorage("enterSend", checked);
   };
 
   const handleNameUpdate = (event) => {
@@ -31,28 +40,44 @@ export const ChatSettings = ({ className }) => {
     setUsername(newUsername);
   };
 
+  React.useEffect(() => {
+    setUsernameInput(username);
+  }, [username]);
+
   return (
     <div className={`${styles.chatSettings} ${className}`}>
       <form className={styles.userSettings} onSubmit={handleNameUpdate}>
-        <input name="username" type="text" defaultValue={username} />
+        <input
+          name="username"
+          type="text"
+          value={usernameInput}
+          onChange={({ target: field }) => {
+            const newName = field?.value?.trim();
+
+            setUsernameInput(newName);
+          }}
+          size="12"
+        />
         <button type="submit">
-          <CheckCircleOutlined />
+          <CheckOutlined />
         </button>
       </form>
 
-      <button type="button" onClick={handleThemeSwitch}>
-        Switch to {activeTheme === "lightTheme" ? "Dark" : "Light"} theme
-      </button>
+      <Switch
+        unCheckedChildren={"\u263C"}
+        checkedChildren={"\u263E"}
+        checked={activeTheme === "darkTheme"}
+        onChange={handleThemeSwitch}
+      />
 
       <span>
-        <input
+        <Switch
           id="enterSend"
-          type="checkbox"
-          onChange={({ target: field }) => {
-            setShouldEnterSend(field?.checked);
-          }}
+          checked={shouldEnterSend}
+          onChange={handleSwitchEnterSend}
+          unCheckedChildren="Enter don't send"
+          checkedChildren="Enter send"
         />
-        <label htmlFor="enterSend"> Send with Enter</label>
       </span>
     </div>
   );
