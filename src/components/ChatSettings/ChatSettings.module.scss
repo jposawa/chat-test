@@ -1,8 +1,12 @@
+@import "../../mixins.scss";
+
 .chatSettings {
+  @include dFlex(column);
+  align-items: flex-start;
   input {
     width: 10rem;
   }
-  label {
-    font-size: 1rem;
+  .enterSend {
+    border: 1px solid var(--textColor);
   }
 }

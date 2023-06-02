@@ -6,11 +6,11 @@ import {
   themeState,
 } from "../../shared/state";
 import PropTypes from "prop-types";
-import { ChatSettings } from "../ChatSettings";
-import { CaretRightOutlined } from "@ant-design/icons";
+import { CaretRightOutlined, SettingOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 
 import styles from "./MessageSender.module.scss";
+import { ModalSettings } from "../ModalSettings";
 
 export const MessageSender = ({ className }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
@@ -18,6 +18,7 @@ export const MessageSender = ({ className }) => {
   const activeTheme = useRecoilValue(themeState);
   const shouldEnterSend = useRecoilValue(shouldEnterSendState);
   const textAreaRef = React.useRef();
+  const [isModalSettingsOpen, setIsModalSettingsOpen] = React.useState(false);
 
   const handleMessageChange = ({ target: field }) => {
     setCurrentMessage(field?.value);
@@ -52,48 +53,63 @@ export const MessageSender = ({ className }) => {
     }
   };
 
+  const callSettingsModal = () => {
+    setIsModalSettingsOpen(true);
+  };
+
   React.useEffect(() => {
     textAreaRef.current.style.height = calcTextareaHeight(currentMessage);
   }, [currentMessage]);
 
   return (
-    <section className={`${styles.messageSender} ${className}`}>
-      <ChatSettings className={styles.chatSettings} />
+    <>
+      <section className={`${styles.messageSender} ${className}`}>
+        <div className={styles.settingsCallerContainer}>
+          <button type="button" onClick={callSettingsModal}>
+            <SettingOutlined />
+          </button>
+        </div>
 
-      <form className={styles.messageWrapper} onSubmit={sendMessage}>
-        <span
-          className={styles.textContainer}
-          style={
-            activeTheme === "darkTheme"
-              ? { "--background": "var(--mainColorDarker)" }
-              : undefined
-          }
-        >
-          <span />
+        <form className={styles.messageWrapper} onSubmit={sendMessage}>
+          <span
+            className={styles.textContainer}
+            style={
+              activeTheme === "darkTheme"
+                ? { "--background": "var(--mainColorDarker)" }
+                : undefined
+            }
+          >
+            <span />
 
-          <textarea
-            name="messageField"
-            title="Your message"
-            placeholder="Write a message..."
-            value={currentMessage}
-            onChange={handleMessageChange}
-            onKeyDown={handleKeyDown}
-            ref={textAreaRef}
-            style={{
-              height: calcTextareaHeight(currentMessage),
-            }}
-          />
-        </span>
+            <textarea
+              name="messageField"
+              title="Your message"
+              placeholder="Write a message..."
+              value={currentMessage}
+              onChange={handleMessageChange}
+              onKeyDown={handleKeyDown}
+              ref={textAreaRef}
+              style={{
+                height: calcTextareaHeight(currentMessage),
+              }}
+            />
+          </span>
 
-        <button
-          type="submit"
-          className={shouldEnterSend ? "hidden collapse" : ""}
-          disabled={!currentMessage || currentMessage === ""}
-        >
-          <CaretRightOutlined />
-        </button>
-      </form>
-    </section>
+          <button
+            type="submit"
+            className={shouldEnterSend ? "hidden collapse" : ""}
+            disabled={!currentMessage || currentMessage === ""}
+          >
+            <CaretRightOutlined />
+          </button>
+        </form>
+      </section>
+
+      <ModalSettings
+        isOpen={isModalSettingsOpen}
+        setIsOpenCallback={setIsModalSettingsOpen}
+      />
+    </>
   );
 };
 

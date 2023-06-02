@@ -10,7 +10,6 @@ import { CheckOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 import React from "react";
 import { Switch } from "antd";
-import { BulbOutlined, BulbFilled } from "@ant-design/icons";
 
 export const ChatSettings = ({ className }) => {
   const [username, setUsername] = useRecoilState(usernameState);
@@ -54,33 +53,49 @@ export const ChatSettings = ({ className }) => {
   return (
     <div className={`${styles.chatSettings} ${className}`}>
       <form className={styles.userSettings} onSubmit={handleNameUpdate}>
-        <input
-          name="username"
-          type="text"
-          value={usernameInput}
-          onChange={handleNameInputChange}
-        />
+        <span>
+          <label htmlFor="username">Name: </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Your name"
+            value={usernameInput}
+            onChange={handleNameInputChange}
+          />
+        </span>
+
         <button type="submit">
           <CheckOutlined />
         </button>
       </form>
 
-      <Switch
-        unCheckedChildren={<BulbFilled />}
-        checkedChildren={<BulbOutlined />}
-        checked={activeTheme === "darkTheme"}
-        onChange={handleThemeSwitch}
-      />
+      <p>
+        <label htmlFor="themeToggle">Active theme: </label>
+        <Switch
+          id="themeToggle"
+          unCheckedChildren="Light"
+          checkedChildren="Dark"
+          checked={activeTheme === "darkTheme"}
+          onChange={handleThemeSwitch}
+        />
+      </p>
 
-      <span>
+      <p>
+        <label htmlFor="enterSend">Send with enter: </label>
         <Switch
           id="enterSend"
           checked={shouldEnterSend}
           onChange={handleSwitchEnterSend}
-          unCheckedChildren="Enter don't send"
-          checkedChildren="Enter send"
+          style={
+            activeTheme === "darkTheme"
+              ? {
+                  border: "1px solid var(--textColor)",
+                }
+              : undefined
+          }
         />
-      </span>
+      </p>
     </div>
   );
 };

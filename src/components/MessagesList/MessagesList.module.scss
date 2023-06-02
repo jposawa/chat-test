@@ -2,26 +2,41 @@
 
 .messagesList {
   --lineBackground: var(--bgLineColor, var(--greyColor));
+  --containerBorderColor: var(--borderColor, var(--textColor));
 
-  max-height: 70%;
-  @include dFlex(column, flex-start);
+  height: 70%;
+  @include dFlex(column, flex-end);
   align-items: flex-start;
-  overflow: auto;
+  overflow: visible;
+  border-bottom: 2px solid var(--containerBorderColor);
+  border-bottom-left-radius: var(--bottomRadius);
+  border-bottom-right-radius: var(--bottomRadius);
 
-  & > pre {
-    position: relative;
+  .messagesContainer {
     width: 100%;
-
-    & > p {
+    overflow: auto;
+    & > pre {
       position: relative;
-      z-index: 2;
-    }
+      width: 100%;
 
-    & > span {
-      @include fullContainerAbsolute();
-      background: var(--lineBackground);
-      opacity: 0.3;
-      z-index: 0;
+      & > p {
+        position: relative;
+        z-index: 2;
+      }
+
+      & > span {
+        @include fullContainerAbsolute();
+        background: var(--lineBackground);
+        opacity: 0.3;
+        z-index: 0;
+      }
     }
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    --bottomRadius: 5px;
+
+    border: 2px solid var(--containerBorderColor);
+    border-top: none;
   }
 }
