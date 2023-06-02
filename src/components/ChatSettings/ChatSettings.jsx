@@ -10,6 +10,7 @@ import { CheckOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 import React from "react";
 import { Switch } from "antd";
+import { BulbOutlined, BulbFilled } from "@ant-design/icons";
 
 export const ChatSettings = ({ className }) => {
   const [username, setUsername] = useRecoilState(usernameState);
@@ -63,8 +64,8 @@ export const ChatSettings = ({ className }) => {
       </form>
 
       <Switch
-        unCheckedChildren={"\u263C"}
-        checkedChildren={"\u263E"}
+        unCheckedChildren={<BulbFilled />}
+        checkedChildren={<BulbOutlined />}
         checked={activeTheme === "darkTheme"}
         onChange={handleThemeSwitch}
       />
