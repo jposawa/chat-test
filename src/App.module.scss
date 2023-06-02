@@ -11,11 +11,15 @@
   transition: color var(--defaultTransitionTime) linear,
     background var(--defaultTransitionTime) linear;
   @include dFlex(column, flex-start);
+  overflow: hidden;
 
   & > section {
     width: 100%;
     position: relative;
-    border: 2px solid;
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    padding: 0 4rem;
   }
 }
 

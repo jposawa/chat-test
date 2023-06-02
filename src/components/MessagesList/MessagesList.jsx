@@ -11,6 +11,7 @@ export const MessagesList = ({ className }) => {
     <section className={`${styles.messagesList} ${className}`}>
       {messagesList.map((message, index) => (
         <p key={`msg${index}`}>
+          {index % 2 === 1 && <span />}
           <b>{username}:</b> {message}
         </p>
       ))}
@@ -19,5 +20,5 @@ export const MessagesList = ({ className }) => {
 };
 
 MessagesList.propTypes = {
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+};

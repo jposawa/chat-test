@@ -1,10 +1,22 @@
+@import "../../mixins.scss";
+
 .messagesList {
+  --lineBackground: var(--bgLineColor, var(--greyColor));
+  
+  position: relative;
   height: 65%;
   border-color: red;
   overflow: auto;
 
+
   & > p {
-    border: 1px solid purple;
+    position: relative;
     white-space: pre;
+
+    &>span {
+      @include fullContainerAbsolute();
+      background: var(--lineBackground);
+      opacity: 0.3;
+    }
   }
 }

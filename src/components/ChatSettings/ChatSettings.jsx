@@ -56,7 +56,6 @@ export const ChatSettings = ({ className }) => {
 
             setUsernameInput(newName);
           }}
-          size="12"
         />
         <button type="submit">
           <CheckOutlined />
