@@ -9,6 +9,7 @@ export default function App() {
   const [username, setUsername] = React.useState("User");
   const [messagesList, setMessagesList] = React.useState([]);
   const [currentMessage, setCurrentMessage] = React.useState();
+  const [shouldEnterSend, setShouldEnterSend] = React.useState(false);
 
   const handleThemeSwitch = () => {
     setActiveTheme(activeTheme === "lightTheme" ? "darkTheme" : "lightTheme");
@@ -24,13 +25,23 @@ export default function App() {
     setUsername(newUsername);
   };
 
-  const sendMessage = (event) => {
-    event.preventDefault();
+  const handleMessageChange = ({ target: field }) => {
+    setCurrentMessage(field?.value);
+  };
 
-    const form = event.target;
-    const newMessage = form?.messageField?.value || "";
-    const newList = [...messagesList, newMessage.trim()];
-    
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && shouldEnterSend) {
+      sendMessage();
+
+      event.preventDefault();
+    }
+  };
+
+  const sendMessage = (event) => {
+    event?.preventDefault();
+
+    const newList = [...messagesList, currentMessage.trim()];
+
     saveSessionStorage("messages", newList, true);
     setCurrentMessage("");
     setMessagesList(newList);
@@ -62,19 +73,33 @@ export default function App() {
               <CheckCircleOutlined />
             </button>
           </form>
+
           <button type="button" onClick={handleThemeSwitch}>
             Switch to {activeTheme === "lightTheme" ? "Dark" : "Light"} theme
           </button>
+
+          <span>
+            <input
+              id="enterSend"
+              type="checkbox"
+              onChange={({ target: field }) => {
+                setShouldEnterSend(field?.checked);
+              }}
+            />
+            <label htmlFor="enterSend"> Send with Enter</label>
+          </span>
         </div>
 
         <form className={styles.messageWrapper} onSubmit={sendMessage}>
           <textarea
             name="messageField"
+            title="Your message"
+            placeholder="Write a message..."
             value={currentMessage}
-            onChange={({ target: field }) => {
-              setCurrentMessage(field?.value?.trim());
-            }}
+            onChange={handleMessageChange}
+            onKeyDown={handleKeyDown}
           ></textarea>
+
           <button
             type="submit"
             disabled={!currentMessage || currentMessage === ""}
