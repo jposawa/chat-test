@@ -27,8 +27,6 @@ export const MessageSender = ({ className }) => {
     const numLineBreaks = (text.match(/\n/g) || []).length;
     const newHeight = 20 + numLineBreaks * 11;
 
-    console.log("num line breaks", numLineBreaks);
-    console.log("newHeight", newHeight);
     return newHeight;
   };
 
