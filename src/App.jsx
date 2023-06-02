@@ -91,14 +91,24 @@ export default function App() {
         </div>
 
         <form className={styles.messageWrapper} onSubmit={sendMessage}>
-          <textarea
-            name="messageField"
-            title="Your message"
-            placeholder="Write a message..."
-            value={currentMessage}
-            onChange={handleMessageChange}
-            onKeyDown={handleKeyDown}
-          ></textarea>
+          <span
+            className={styles.textContainer}
+            style={
+              activeTheme === "darkTheme"
+                ? { "--background": "var(--mainColorDarker)" }
+                : undefined
+            }
+          >
+            <span />
+            <textarea
+              name="messageField"
+              title="Your message"
+              placeholder="Write a message..."
+              value={currentMessage}
+              onChange={handleMessageChange}
+              onKeyDown={handleKeyDown}
+            />
+          </span>
 
           <button
             type="submit"
