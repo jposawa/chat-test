@@ -30,7 +30,7 @@ export default function App() {
     const form = event.target;
     const newMessage = form?.messageField?.value || "";
     const newList = [...messagesList, newMessage.trim()];
-    
+
     saveSessionStorage("messages", newList, true);
     setCurrentMessage("");
     setMessagesList(newList);
@@ -68,13 +68,24 @@ export default function App() {
         </div>
 
         <form className={styles.messageWrapper} onSubmit={sendMessage}>
-          <textarea
-            name="messageField"
-            value={currentMessage}
-            onChange={({ target: field }) => {
-              setCurrentMessage(field?.value?.trim());
-            }}
-          ></textarea>
+          <span
+            className={styles.textContainer}
+            style={
+              activeTheme === "darkTheme"
+                ? { "--background": "var(--mainColorDarker)" }
+                : undefined
+            }
+          >
+            <span />
+            <textarea
+              name="messageField"
+              value={currentMessage}
+              style={{ color: "var(--textColor)" }}
+              onChange={({ target: field }) => {
+                setCurrentMessage(field?.value?.trim());
+              }}
+            />
+          </span>
           <button
             type="submit"
             disabled={!currentMessage || currentMessage === ""}
