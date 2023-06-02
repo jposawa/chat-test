@@ -3,14 +3,16 @@
 .messagesList {
   --lineBackground: var(--bgLineColor, var(--greyColor));
   
-  position: relative;
   height: 65%;
-  border-color: red;
+  @include dFlex(column, flex-end);
+  align-items: flex-start;
   overflow: auto;
+  border: 2px solid red;
 
 
   & > p {
     position: relative;
+    width: 100%;
     white-space: pre;
 
     &>span {
