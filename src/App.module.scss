@@ -3,14 +3,12 @@
 .mainWrapper {
   --defaultTransitionTime: 300ms;
 
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  @include fullContainerAbsolute();
   color: var(--textColor);
   background: var(--bgColor);
   transition: color var(--defaultTransitionTime) linear,
     background var(--defaultTransitionTime) linear;
-  @include dFlex(column, flex-start);
+  @include dFlex(column);
   overflow: hidden;
 
   & > section {

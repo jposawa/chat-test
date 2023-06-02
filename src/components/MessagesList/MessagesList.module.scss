@@ -2,21 +2,27 @@
 
 .messagesList {
   --lineBackground: var(--bgLineColor, var(--greyColor));
-  
-  position: relative;
+
   height: 65%;
-  border-color: red;
+  @include dFlex(column, flex-start);
+  align-items: flex-start;
+  border: 2px solid red;
   overflow: auto;
 
-
-  & > p {
+  & > pre {
     position: relative;
-    white-space: pre;
+    width: 100%;
 
-    &>span {
+    & > p {
+      position: relative;
+      z-index: 2;
+    }
+
+    & > span {
       @include fullContainerAbsolute();
       background: var(--lineBackground);
       opacity: 0.3;
+      z-index: 0;
     }
   }
 }

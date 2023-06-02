@@ -33,11 +33,15 @@ export const MessageSender = ({ className }) => {
   const sendMessage = (event) => {
     event?.preventDefault();
 
-    const newList = [...messagesList, currentMessage.trim()];
+    const trimmedMessage = currentMessage.trim();
 
-    saveSessionStorage("messages", newList, true);
-    setCurrentMessage("");
-    setMessagesList(newList);
+    if (trimmedMessage !== "") {
+      const newList = [...messagesList, currentMessage.trim()];
+
+      saveSessionStorage("messages", newList, true);
+      setCurrentMessage("");
+      setMessagesList(newList);
+    }
   };
 
   return (
