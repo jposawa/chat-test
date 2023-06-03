@@ -3,9 +3,19 @@
 .chatSettings {
   @include dFlex(column);
   align-items: flex-start;
+
   input {
     width: 10rem;
   }
+
+  .nameSettings {
+    @include dFlex();
+    button {
+      background: var(--secondaryColorDark);
+      color: var(--whiteColor);
+    }
+  }
+
   .enterSend {
     border: 1px solid var(--textColor);
   }

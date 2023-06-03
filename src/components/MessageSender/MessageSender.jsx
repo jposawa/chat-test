@@ -11,6 +11,7 @@ import { saveSessionStorage } from "../../shared/utils";
 
 import styles from "./MessageSender.module.scss";
 import { ModalSettings } from "../ModalSettings";
+import { Button } from "../Button";
 
 export const MessageSender = ({ className }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
@@ -64,10 +65,11 @@ export const MessageSender = ({ className }) => {
   return (
     <>
       <section className={`${styles.messageSender} ${className}`}>
+        <span className={styles.transparentBackground} />
         <div className={styles.settingsCallerContainer}>
-          <button type="button" onClick={callSettingsModal}>
+          <Button type="button" onClick={callSettingsModal}>
             <SettingOutlined />
-          </button>
+          </Button>
         </div>
 
         <form className={styles.messageWrapper} onSubmit={sendMessage}>
@@ -95,13 +97,13 @@ export const MessageSender = ({ className }) => {
             />
           </span>
 
-          <button
+          <Button
             type="submit"
             className={shouldEnterSend ? "hidden collapse" : ""}
             disabled={!currentMessage || currentMessage === ""}
           >
             <CaretRightOutlined />
-          </button>
+          </Button>
         </form>
       </section>
 

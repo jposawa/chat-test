@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 import styles from "./ModalSettings.module.scss";
 import { ChatSettings } from "../ChatSettings";
+import { Button } from "../Button";
 
 export const ModalSettings = ({ isOpen, setIsOpenCallback, className }) => {
   const callClose = () => {
@@ -12,15 +13,15 @@ export const ModalSettings = ({ isOpen, setIsOpenCallback, className }) => {
     <div className={`${styles.modal} ${className} ${!isOpen ? "hidden" : ""}`}>
       <span onClick={callClose} />
 
-      <main className={styles.modalContentContainer}>
+      <section className={styles.modalContentContainer}>
+        <Button type="button" onClick={callClose} sameDimensionSize="3rem">
+          &times;
+        </Button>
+
         <h3>User settings</h3>
+
         <ChatSettings />
-        <div className={styles.buttonContainer}>
-          <button type="button" onClick={callClose}>
-            Ok
-          </button>
-        </div>
-      </main>
+      </section>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 @import "../../mixins.scss";
 
 .messagesList {
-  --lineBackground: var(--bgLineColor, var(--greyColor));
+  --bgLineColor: var(--evenLineBackground, var(--greyColor));
   --containerBorderColor: var(--borderColor, var(--textColor));
 
   height: 70%;
@@ -13,6 +13,7 @@
   border-bottom-right-radius: var(--bottomRadius);
 
   .messagesContainer {
+    border-bottom: none;
     width: 100%;
     overflow: auto;
     & > pre {
@@ -26,7 +27,7 @@
 
       & > span {
         @include fullContainerAbsolute();
-        background: var(--lineBackground);
+        background: var(--bgLineColor);
         opacity: 0.3;
         z-index: 0;
       }

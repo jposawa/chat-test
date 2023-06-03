@@ -10,6 +10,7 @@ import { CheckOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 import React from "react";
 import { Switch } from "antd";
+import { Button } from "../Button";
 
 export const ChatSettings = ({ className }) => {
   const [username, setUsername] = useRecoilState(usernameState);
@@ -52,9 +53,10 @@ export const ChatSettings = ({ className }) => {
 
   return (
     <div className={`${styles.chatSettings} ${className}`}>
-      <form className={styles.userSettings} onSubmit={handleNameUpdate}>
+      <form className={styles.nameSettings} onSubmit={handleNameUpdate}>
         <span>
           <label htmlFor="username">Name: </label>
+
           <input
             id="username"
             name="username"
@@ -65,19 +67,31 @@ export const ChatSettings = ({ className }) => {
           />
         </span>
 
-        <button type="submit">
+        <Button
+          type="submit"
+          sameDimensionSize="2rem"
+          style={username === usernameInput ? { maxWidth: 0 } : undefined}
+        >
           <CheckOutlined />
-        </button>
+        </Button>
       </form>
 
       <p>
         <label htmlFor="themeToggle">Active theme: </label>
+
         <Switch
           id="themeToggle"
           unCheckedChildren="Light"
           checkedChildren="Dark"
           checked={activeTheme === "darkTheme"}
           onChange={handleThemeSwitch}
+          style={
+            activeTheme === "lightTheme"
+              ? {
+                  boxShadow: "0 0 20rem rgba(0,0,0,0.3) inset",
+                }
+              : undefined
+          }
         />
       </p>
 
