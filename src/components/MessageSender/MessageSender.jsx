@@ -1,6 +1,10 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { messagesListState, shouldEnterSendState } from "../../shared/state";
+import {
+  messagesListState,
+  shouldEnterSendState,
+  themeState,
+} from "../../shared/state";
 import PropTypes from "prop-types";
 import { SendOutlined, SettingOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
@@ -13,6 +17,7 @@ export const MessageSender = ({ className }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messagesList, setMessagesList] = useRecoilState(messagesListState);
   const shouldEnterSend = useRecoilValue(shouldEnterSendState);
+  const activeTheme = useRecoilValue(themeState);
   const textAreaRef = React.useRef();
   const [isModalSettingsOpen, setIsModalSettingsOpen] = React.useState(false);
 
@@ -67,7 +72,20 @@ export const MessageSender = ({ className }) => {
           </Button>
         </div>
 
-        <form className={styles.messageWrapper} onSubmit={sendMessage}>
+        <form
+          className={styles.messageWrapper}
+          onSubmit={sendMessage}
+          style={
+            !shouldEnterSend
+              ? {
+                  "--borderColor":
+                    activeTheme === "lightTheme"
+                      ? "var(--greyColorLight)"
+                      : "var(--greyColorDarker)",
+                }
+              : undefined
+          }
+        >
           <textarea
             name="messageField"
             title="Your message"
@@ -84,7 +102,6 @@ export const MessageSender = ({ className }) => {
 
           <Button
             type="submit"
-            // className={shouldEnterSend ? "collapse" : ""}
             style={shouldEnterSend ? { transform: "scale(0)" } : undefined}
             disabled={!currentMessage || currentMessage === ""}
           >
