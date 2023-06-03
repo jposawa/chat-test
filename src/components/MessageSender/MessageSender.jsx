@@ -1,12 +1,8 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  messagesListState,
-  shouldEnterSendState,
-  themeState,
-} from "../../shared/state";
+import { messagesListState, shouldEnterSendState } from "../../shared/state";
 import PropTypes from "prop-types";
-import { CaretRightOutlined, SettingOutlined } from "@ant-design/icons";
+import { SendOutlined, SettingOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 
 import styles from "./MessageSender.module.scss";
@@ -16,7 +12,6 @@ import { Button } from "../Button";
 export const MessageSender = ({ className }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messagesList, setMessagesList] = useRecoilState(messagesListState);
-  const activeTheme = useRecoilValue(themeState);
   const shouldEnterSend = useRecoilValue(shouldEnterSendState);
   const textAreaRef = React.useRef();
   const [isModalSettingsOpen, setIsModalSettingsOpen] = React.useState(false);
@@ -73,34 +68,27 @@ export const MessageSender = ({ className }) => {
         </div>
 
         <form className={styles.messageWrapper} onSubmit={sendMessage}>
-          <span
-            className={styles.textContainer}
-            style={
-              activeTheme === "darkTheme"
-                ? { "--background": "var(--mainColorDarker)" }
-                : undefined
-            }
-          >
-            <textarea
-              name="messageField"
-              title="Your message"
-              placeholder="Write a message..."
-              value={currentMessage}
-              onChange={handleMessageChange}
-              onKeyDown={handleKeyDown}
-              ref={textAreaRef}
-              style={{
-                height: calcTextareaHeight(currentMessage),
-              }}
-            />
-          </span>
+          <textarea
+            name="messageField"
+            title="Your message"
+            placeholder="Write a message..."
+            value={currentMessage}
+            onChange={handleMessageChange}
+            onKeyDown={handleKeyDown}
+            ref={textAreaRef}
+            style={{
+              height: calcTextareaHeight(currentMessage),
+              paddingRight: shouldEnterSend ? "0.5rem" : "5rem",
+            }}
+          />
 
           <Button
             type="submit"
-            className={shouldEnterSend ? "hidden collapse" : ""}
+            // className={shouldEnterSend ? "collapse" : ""}
+            style={shouldEnterSend ? { transform: "scale(0)" } : undefined}
             disabled={!currentMessage || currentMessage === ""}
           >
-            <CaretRightOutlined />
+            <SendOutlined />
           </Button>
         </form>
       </section>

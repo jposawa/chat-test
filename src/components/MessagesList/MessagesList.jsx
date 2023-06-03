@@ -8,7 +8,6 @@ import styles from "./MessagesList.module.scss";
 export const MessagesList = ({
   className,
   evenLineBackground = "var(--greyColor)",
-  borderColor = "var(--textColor, var(--blackColor))",
 }) => {
   const messagesListRef = React.useRef();
   const username = useRecoilValue(usernameState);
@@ -29,7 +28,7 @@ export const MessagesList = ({
   return (
     <section
       className={`${styles.messagesList} ${className}`}
-      style={{ "--evenLineBackground": evenLineBackground, "--borderColor": borderColor }}
+      style={{ "--evenLineBackground": evenLineBackground }}
     >
       <div className={styles.messagesContainer} ref={messagesListRef}>
         {messagesList.map((message, index) => (
@@ -48,5 +47,4 @@ export const MessagesList = ({
 MessagesList.propTypes = {
   className: PropTypes.string,
   evenLineBackground: PropTypes.string,
-  borderColor: PropTypes.string,
 };

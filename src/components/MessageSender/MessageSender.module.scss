@@ -55,6 +55,8 @@
   }
 
   .messageWrapper {
+    --buttonSize: 4.5rem;
+
     position: relative;
     width: 100%;
     height: 100%;
@@ -63,43 +65,38 @@
     overflow: hidden;
 
     & > button {
-      --size: 4rem;
-
-      max-width: var(--size);
-      max-height: var(--size);
-      width: 100%;
-      height: 100%;
-      transition: all 300ms linear, max-height 150ms 300ms linear;
-      border: none;
+      @include fullContainerAbsolute();
+      max-width: var(--buttonSize);
+      max-height: var(--buttonSize);
+      top: auto;
+      right: 0;
+      bottom: 10%;
+      left: auto;
+      font-size: 1.2em;
+      transition: all var(--defaultTransitionTime) linear;
       background: var(--secondaryColorDark);
       color: var(--whiteColor);
+      z-index: 9;
+      border: 4px solid var(--bgColor, --blackColor) !important;
+      border-radius: 50%;
     }
 
-    .textContainer {
-      --bg: var(--background, none);
+    & > textarea {
       position: relative;
       width: 100%;
-      height: 100%;
+      max-height: 100%;
+      min-height: var(--buttonSize);
+      padding: 0.5rem;
+      resize: none;
+      z-index: 7;
+      outline: none;
+      background: var(--mainColorDarker);
+      color: var(--whiteColor);
+      transition: height var(--defaultTransitionTime) linear;
       border: none;
-      @include dFlex(column, flex-end);
-
-      & > textarea {
-        position: relative;
-        width: 100%;
-        max-height: 100%;
-        min-height: 35%;
-        padding: 0.5rem;
-        resize: none;
-        z-index: 7;
-        outline: none;
-        background: var(--mainColorDarker);
-        color: var(--whiteColor);
-        transition: height var(--defaultTransitionTime) linear;
-        border: none;
-        border-radius: 5px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+      border-radius: 5px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 }

@@ -8,9 +8,6 @@
   @include dFlex(column, flex-end);
   align-items: flex-start;
   overflow: visible;
-  border-bottom: 2px solid var(--containerBorderColor);
-  border-bottom-left-radius: var(--bottomRadius);
-  border-bottom-right-radius: var(--bottomRadius);
 
   .messagesContainer {
     border-bottom: none;
@@ -35,9 +32,8 @@
   }
 
   @media screen and (min-width: $desktopBreakpoint) {
-    --bottomRadius: 5px;
-
     border: 2px solid var(--containerBorderColor);
     border-top: none;
+    border-bottom: none;
   }
 }
