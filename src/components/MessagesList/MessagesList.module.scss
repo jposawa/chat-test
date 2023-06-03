@@ -1,27 +1,39 @@
 @import "../../mixins.scss";
 
 .messagesList {
-  --lineBackground: var(--bgLineColor, var(--greyColor));
+  --bgLineColor: var(--evenLineBackground, var(--greyColor));
+  --containerBorderColor: var(--borderColor, var(--textColor));
 
-  max-height: 70%;
-  @include dFlex(column, flex-start);
+  height: 70%;
+  @include dFlex(column, flex-end);
   align-items: flex-start;
-  overflow: auto;
+  overflow: visible;
 
-  & > pre {
-    position: relative;
+  .messagesContainer {
+    border-bottom: none;
     width: 100%;
-
-    & > p {
+    overflow: auto;
+    & > pre {
       position: relative;
-      z-index: 2;
-    }
+      width: 100%;
 
-    & > span {
-      @include fullContainerAbsolute();
-      background: var(--lineBackground);
-      opacity: 0.3;
-      z-index: 0;
+      & > p {
+        position: relative;
+        z-index: 2;
+      }
+
+      & > span {
+        @include fullContainerAbsolute();
+        background: var(--bgLineColor);
+        opacity: 0.3;
+        z-index: 0;
+      }
     }
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    border: 2px solid var(--containerBorderColor);
+    border-top: none;
+    border-bottom: none;
   }
 }

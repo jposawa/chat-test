@@ -19,7 +19,7 @@ export default function App() {
     //Doing this because session and local storages save strings, so we have to compare it
     const sessionEnterSend = loadSessionStorage("enterSend") === "true";
 
-    setActiveTheme(sessionTheme);
+    setActiveTheme(sessionTheme || "lightTheme");
     setUsername(sessionUsername || "User");
     setMessagesList(sessionMessages || []);
     setShouldEnterSend(sessionEnterSend);

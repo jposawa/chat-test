@@ -11,7 +11,8 @@
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-button, a {
+button,
+a {
   cursor: pointer;
 }
 
@@ -61,6 +62,8 @@ body {
   --blackColor: hsl(0, 0%, 5%);
 
   --redColor: hsl(0, 50%, 40%);
+  --redColorLight: hsl(0, 50%, 50%);
+  --redColorDark: hsl(0, 50%, 30%);
 }
 
 /*DEFAULT SETTINGS*/

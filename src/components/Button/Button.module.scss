@@ -1,0 +1,22 @@
+@import "../../mixins.scss";
+
+.button {
+  --bSize: var(--btnSize, auto);
+
+  max-width: var(--bSize);
+  width: var(--bSize);
+  height: var(--bSize);
+  max-height: var(--bSize);
+  cursor: pointer;
+  transition: all var(--defaultTransitionTime, 300ms) linear;
+  background: var(--bgColor, var(--whiteColor));
+  color: var(--textColor, var(--blackColor));
+  outline: none;
+  border-style: solid;
+  border-color: var(--textColor, var(--blackColor));
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 0 20rem rgba(0, 0, 0, 0.3) inset;
+  }
+}

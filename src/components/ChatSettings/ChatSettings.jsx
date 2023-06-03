@@ -10,7 +10,7 @@ import { CheckOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 import React from "react";
 import { Switch } from "antd";
-import { BulbOutlined, BulbFilled } from "@ant-design/icons";
+import { Button } from "../Button";
 
 export const ChatSettings = ({ className }) => {
   const [username, setUsername] = useRecoilState(usernameState);
@@ -53,34 +53,63 @@ export const ChatSettings = ({ className }) => {
 
   return (
     <div className={`${styles.chatSettings} ${className}`}>
-      <form className={styles.userSettings} onSubmit={handleNameUpdate}>
-        <input
-          name="username"
-          type="text"
-          value={usernameInput}
-          onChange={handleNameInputChange}
-        />
-        <button type="submit">
+      <form className={styles.nameSettings} onSubmit={handleNameUpdate}>
+        <span>
+          <label htmlFor="username">Name: </label>
+
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Your name"
+            value={usernameInput}
+            onChange={handleNameInputChange}
+          />
+        </span>
+
+        <Button
+          type="submit"
+          sameDimensionSize="2rem"
+          style={username === usernameInput ? { maxWidth: 0 } : undefined}
+        >
           <CheckOutlined />
-        </button>
+        </Button>
       </form>
 
-      <Switch
-        unCheckedChildren={<BulbFilled />}
-        checkedChildren={<BulbOutlined />}
-        checked={activeTheme === "darkTheme"}
-        onChange={handleThemeSwitch}
-      />
+      <p>
+        <label htmlFor="themeToggle">Active theme: </label>
 
-      <span>
+        <Switch
+          id="themeToggle"
+          unCheckedChildren="Light"
+          checkedChildren="Dark"
+          checked={activeTheme === "darkTheme"}
+          onChange={handleThemeSwitch}
+          style={
+            activeTheme === "lightTheme"
+              ? {
+                  boxShadow: "0 0 20rem rgba(0,0,0,0.3) inset",
+                }
+              : undefined
+          }
+        />
+      </p>
+
+      <p>
+        <label htmlFor="enterSend">Send with enter: </label>
         <Switch
           id="enterSend"
           checked={shouldEnterSend}
           onChange={handleSwitchEnterSend}
-          unCheckedChildren="Enter don't send"
-          checkedChildren="Enter send"
+          style={
+            activeTheme === "darkTheme"
+              ? {
+                  border: "1px solid var(--textColor)",
+                }
+              : undefined
+          }
         />
-      </span>
+      </p>
     </div>
   );
 };
