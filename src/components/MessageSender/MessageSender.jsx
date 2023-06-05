@@ -1,10 +1,6 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  messagesListState,
-  shouldEnterSendState,
-  themeState,
-} from "../../shared/state";
+import { messagesListState, shouldEnterSendState } from "../../shared/state";
 import PropTypes from "prop-types";
 import { SendOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
@@ -16,7 +12,6 @@ export const MessageSender = ({ className }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messagesList, setMessagesList] = useRecoilState(messagesListState);
   const shouldEnterSend = useRecoilValue(shouldEnterSendState);
-  const activeTheme = useRecoilValue(themeState);
   const textAreaRef = React.useRef();
 
   const handleMessageChange = ({ target: field }) => {
@@ -61,20 +56,7 @@ export const MessageSender = ({ className }) => {
       <section className={`${styles.messageSender} ${className}`}>
         <span className={styles.transparentBackground} />
 
-        <form
-          className={styles.messageWrapper}
-          onSubmit={sendMessage}
-          style={
-            !shouldEnterSend
-              ? {
-                  "--borderColor":
-                    activeTheme === "lightTheme"
-                      ? "var(--greyColorLight)"
-                      : "var(--greyColorDarker)",
-                }
-              : undefined
-          }
-        >
+        <form className={styles.messageWrapper} onSubmit={sendMessage}>
           <textarea
             name="messageField"
             title="Your message"
