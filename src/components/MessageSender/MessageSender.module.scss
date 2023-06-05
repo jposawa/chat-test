@@ -23,7 +23,7 @@
   }
 
   .messageWrapper {
-    --buttonSize: 5rem;
+    --buttonSize: 7.5rem;
 
     position: relative;
     width: 100%;
@@ -40,7 +40,7 @@
       right: 0;
       bottom: 0;
       left: auto;
-      font-size: 1.2em;
+      font-size: 1.5em;
       transition: all var(--defaultTransitionTime) linear;
       background: var(--secondaryColorDark);
       color: var(--whiteColor);
@@ -71,6 +71,14 @@
       border-top-right-radius: calc(
         var(--topBorderRadius) - var(--widthOffset)
       );
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 2%;
+
+      &>textarea {
+        border-radius: var(--topBorderRadius);
+      }
     }
   }
 }
