@@ -6,11 +6,10 @@ import {
   themeState,
 } from "../../shared/state";
 import PropTypes from "prop-types";
-import { SendOutlined, SettingOutlined } from "@ant-design/icons";
+import { SendOutlined } from "@ant-design/icons";
 import { saveSessionStorage } from "../../shared/utils";
 
 import styles from "./MessageSender.module.scss";
-import { ModalSettings } from "../ModalSettings";
 import { Button } from "../Button";
 
 export const MessageSender = ({ className }) => {
@@ -19,7 +18,6 @@ export const MessageSender = ({ className }) => {
   const shouldEnterSend = useRecoilValue(shouldEnterSendState);
   const activeTheme = useRecoilValue(themeState);
   const textAreaRef = React.useRef();
-  const [isModalSettingsOpen, setIsModalSettingsOpen] = React.useState(false);
 
   const handleMessageChange = ({ target: field }) => {
     setCurrentMessage(field?.value);
@@ -54,10 +52,6 @@ export const MessageSender = ({ className }) => {
     }
   };
 
-  const callSettingsModal = () => {
-    setIsModalSettingsOpen(true);
-  };
-
   React.useEffect(() => {
     textAreaRef.current.style.height = calcTextareaHeight(currentMessage);
   }, [currentMessage]);
@@ -66,11 +60,6 @@ export const MessageSender = ({ className }) => {
     <>
       <section className={`${styles.messageSender} ${className}`}>
         <span className={styles.transparentBackground} />
-        <div className={styles.settingsCallerContainer}>
-          <Button type="button" onClick={callSettingsModal}>
-            <SettingOutlined />
-          </Button>
-        </div>
 
         <form
           className={styles.messageWrapper}
@@ -110,10 +99,7 @@ export const MessageSender = ({ className }) => {
         </form>
       </section>
 
-      <ModalSettings
-        isOpen={isModalSettingsOpen}
-        setIsOpenCallback={setIsModalSettingsOpen}
-      />
+      
     </>
   );
 };

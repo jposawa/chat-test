@@ -4,6 +4,9 @@ import { messagesListState, usernameState } from "../../shared/state";
 import PropTypes from "prop-types";
 
 import styles from "./MessagesList.module.scss";
+import { Button } from "../Button";
+import { SettingOutlined } from "@ant-design/icons";
+import { ModalSettings } from "../ModalSettings";
 
 export const MessagesList = ({
   className,
@@ -12,6 +15,11 @@ export const MessagesList = ({
   const messagesListRef = React.useRef();
   const username = useRecoilValue(usernameState);
   const messagesList = useRecoilValue(messagesListState);
+  const [isModalSettingsOpen, setIsModalSettingsOpen] = React.useState(false);
+
+  const callSettingsModal = () => {
+    setIsModalSettingsOpen(true);
+  };
 
   React.useEffect(() => {
     if (messagesListRef?.current) {
@@ -26,21 +34,39 @@ export const MessagesList = ({
   }, [messagesList]);
 
   return (
-    <section
-      className={`${styles.messagesList} ${className}`}
-      style={{ "--evenLineBackground": evenLineBackground }}
-    >
-      <div className={styles.messagesContainer} ref={messagesListRef}>
-        {messagesList.map((message, index) => (
-          <pre key={`msg${index}`}>
-            {index % 2 === 1 && <span />}
-            <p>
-              <b>{username}:</b> {message}
-            </p>
-          </pre>
-        ))}
-      </div>
-    </section>
+    <>
+      <section
+        className={`${styles.messagesList} ${className}`}
+        style={{ "--evenLineBackground": evenLineBackground }}
+      >
+        <div className={styles.settingsCallerContainer}>
+          <Button type="button" onClick={callSettingsModal}>
+            <SettingOutlined />
+          </Button>
+        </div>
+        <div className={styles.messagesContainer} ref={messagesListRef}>
+          {messagesList.map((message, index) => (
+            <span key={`msg${index}`}>
+              <span />
+
+              <dl>
+                <dt>
+                  <b>{username}</b>
+                </dt>
+                <dd>
+                  {message}
+                </dd>
+              </dl>
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <ModalSettings
+        isOpen={isModalSettingsOpen}
+        setIsOpenCallback={setIsModalSettingsOpen}
+      />
+    </>
   );
 };
 
