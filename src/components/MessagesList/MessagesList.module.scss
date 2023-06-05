@@ -55,6 +55,10 @@
 
       & > dl {
         position: relative;
+
+        &>dd {
+          word-wrap: break-word;
+        }
       }
 
       & > span {
