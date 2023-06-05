@@ -5,35 +5,64 @@
   --containerBorderColor: var(--borderColor, var(--textColor));
 
   height: 70%;
-  @include dFlex(column, flex-end);
+  @include dFlex(column, space-between);
   align-items: flex-start;
   overflow: visible;
 
-  .messagesContainer {
-    border-bottom: none;
+  .settingsCallerContainer {
+    position: relative;
     width: 100%;
-    overflow: auto;
-    & > pre {
-      position: relative;
-      width: 100%;
+    padding: 0.5rem;
+    @include dFlex(row, flex-end);
+    z-index: 4;
 
-      & > p {
-        position: relative;
-        z-index: 2;
-      }
+    button {
+      --size: 3.5rem;
 
-      & > span {
-        @include fullContainerAbsolute();
-        background: var(--bgLineColor);
-        opacity: 0.3;
-        z-index: 0;
+      @include dFlex();
+      width: var(--size);
+      height: var(--size);
+      font-size: 2.5rem;
+      background: var(--secondaryAltColorDark);
+      color: var(--greyColorLight);
+      border-radius: 50%;
+
+      &:hover {
+        transform: rotate(200deg);
+        color: var(--greyColorLighter);
       }
     }
   }
 
-  @media screen and (min-width: $desktopBreakpoint) {
-    border: 2px solid var(--containerBorderColor);
-    border-top: none;
-    border-bottom: none;
+  .messagesContainer {
+    position: relative;
+    width: 100%;
+    padding: 0.5rem;
+    @include dFlex(column, flex-start);
+    align-items: flex-start;
+    gap: 0.5rem;
+    z-index: 8;
+    overflow: auto;
+
+    & > span {
+      position: relative;
+      padding: 0.4rem 0.6rem;
+      min-width: max(20%, 10rem);
+      max-width: 70%;
+      border-radius: 5px;
+      z-index: 9;
+
+      & > dl {
+        position: relative;
+      }
+
+      & > span {
+        @include fullContainerAbsolute();
+        background: var(--mainColor);
+        opacity: 0.35;
+        z-index: 0;
+        border-radius: 5px;
+      }
+    }
   }
 }

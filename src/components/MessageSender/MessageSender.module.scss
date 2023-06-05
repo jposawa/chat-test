@@ -22,41 +22,9 @@
     z-index: 7;
   }
 
-  .transparentBackground {
-    @include fullContainerAbsolute();
-    width: 140vw;
-    left: -40vw;
-    background: var(--greyColor);
-    opacity: 0.35;
-    z-index: 0;
-  }
-
-  .settingsCallerContainer {
-    width: 100%;
-    padding-right: 5%;
-    @include dFlex();
-
-    button {
-      --size: 3.5rem;
-
-      @include dFlex();
-      width: var(--size);
-      height: var(--size);
-      font-size: 2.5rem;
-      background: var(--secondaryAltColorDark);
-      color: var(--greyColorLight);
-      border-radius: 50%;
-
-      &:hover {
-        transform: rotate(200deg);
-        color: var(--greyColorLighter);
-      }
-    }
-  }
-
   .messageWrapper {
     --buttonSize: 5rem;
-    --borderChosenColor: var(--borderColor, rgba(0,0,0,0));
+    --borderChosenColor: var(--borderColor, rgba(0, 0, 0, 0));
 
     position: relative;
     width: 100%;
@@ -81,17 +49,17 @@
       border: 4px solid !important;
       border-color: var(--borderChosenColor, rgba(0, 0, 0, 0)) !important;
       border-radius: 50%;
-
     }
 
     & > textarea {
+      --topBorderRadius: 10px;
+      --widthOffset: calc(var(--buttonSize) * var(--btnMultiplier, 1));
+
       position: relative;
-      width: calc(100% - (var(--buttonSize) / 2.5));
-      width: 100%;
+      width: calc(100% - (var(--widthOffset) / 2));
       max-height: 100%;
       min-height: var(--buttonSize);
       padding: 0.5rem;
-      // margin: 0 auto;
       resize: none;
       z-index: 7;
       outline: none;
@@ -99,20 +67,16 @@
       color: var(--whiteColor);
       transition: all var(--defaultTransitionTime) linear;
       border: none;
-      border-radius: 5px;
-      // border-right: 1rem solid red;
-      border-bottom-left-radius: 0;
-      border-top-right-radius: 40px;
-      border-bottom-right-radius: 40px;
+      border-radius: 0;
+      border-top-left-radius: var(--topBorderRadius);
+      border-top-right-radius: calc(
+        var(--topBorderRadius) - var(--widthOffset)
+      );
     }
 
     @media screen and (min-width: $desktopBreakpoint) {
       & > button {
         border-radius: 50%;
-      }
-
-      & > textarea {
-        // width: calc(100% - (var(--buttonSize) / 1.1));
       }
     }
   }
