@@ -10,6 +10,9 @@ To setup the project locally you can clone the from here and then run `npm insta
 ### Launch
 After installing dependencies type `npm run dev` in your terminal to run it at `localhost:5173`
 
+### Test
+If you want to run the tests locally just type `npm run test` in your terminal
+
 ## Development Decisions
 * Along with the main features of sending message and changing User name, I decided to add some quality of life improvements
   * Dark theme: Inside User settings modal
