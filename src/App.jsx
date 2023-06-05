@@ -4,13 +4,13 @@ import styles from "./App.module.scss";
 import { loadSessionStorage } from "./shared/utils";
 import { MessagesList, MessageSender } from "./components";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { messagesListState, shouldEnterSendState, themeState, usernameState } from "./shared/state";
+import { messagesListState, sendWithReturnState, themeState, usernameState } from "./shared/state";
 
 export default function App() {
   const [activeTheme, setActiveTheme] = useRecoilState(themeState);
   const setUsername = useSetRecoilState(usernameState);
   const setMessagesList = useSetRecoilState(messagesListState);
-  const setShouldEnterSend = useSetRecoilState(shouldEnterSendState);
+  const setSendWithReturn = useSetRecoilState(sendWithReturnState);
 
   React.useEffect(() => {
     const sessionMessages = loadSessionStorage("messages", true);
@@ -22,8 +22,8 @@ export default function App() {
     setActiveTheme(sessionTheme || "lightTheme");
     setUsername(sessionUsername || "User");
     setMessagesList(sessionMessages || []);
-    setShouldEnterSend(sessionEnterSend);
-  }, [setActiveTheme, setMessagesList, setShouldEnterSend, setUsername]);
+    setSendWithReturn(sessionEnterSend);
+  }, [setActiveTheme, setMessagesList, setSendWithReturn, setUsername]);
 
   return (
     <div className={`${styles[activeTheme]} ${styles.mainWrapper}`}>

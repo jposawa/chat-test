@@ -11,6 +11,7 @@ export const Button = ({
   sameDimensionSize,
   children,
   showBorder,
+  testId,
 }) => {
   return (
     <button
@@ -18,6 +19,7 @@ export const Button = ({
       name={name}
       type={type}
       className={`${styles.button} ${className}`}
+      data-testid={testId}
       style={{
         ...style,
         "--btnSize": sameDimensionSize,
@@ -40,4 +42,5 @@ Button.propTypes = {
   sameDimensionSize: Proptypes.string,
   children: Proptypes.node.isRequired,
   showBorder: Proptypes.bool,
+  testId: Proptypes.string,
 };
