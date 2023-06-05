@@ -40,7 +40,11 @@ export const MessagesList = ({
         style={{ "--evenLineBackground": evenLineBackground }}
       >
         <div className={styles.settingsCallerContainer}>
-          <Button type="button" onClick={callSettingsModal}>
+          <Button
+            type="button"
+            onClick={callSettingsModal}
+            style={{ "--rotateAngle": isModalSettingsOpen ? "200deg" : "0deg" }}
+          >
             <SettingOutlined />
           </Button>
         </div>
@@ -53,9 +57,7 @@ export const MessagesList = ({
                 <dt>
                   <h5>{username}</h5>
                 </dt>
-                <dd>
-                  {message}
-                </dd>
+                <dd>{message}</dd>
               </dl>
             </span>
           ))}

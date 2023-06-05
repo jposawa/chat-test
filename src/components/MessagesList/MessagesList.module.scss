@@ -26,10 +26,10 @@
       background: var(--secondaryAltColorDark);
       color: var(--greyColorLight);
       border-radius: 50%;
+      transform: rotate(var(--rotateAngle, 0deg));
 
       &:hover {
-        transform: rotate(200deg);
-        color: var(--greyColorLighter);
+        color: var(--whiteColor);
       }
     }
   }
