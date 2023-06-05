@@ -52,15 +52,14 @@
     }
 
     & > textarea {
-      --rightBorderRadius: 100px;
+      --topBorderRadius: 10px;
+      --widthOffset: calc(var(--buttonSize) * var(--btnMultiplier, 1));
 
       position: relative;
-      width: calc(100% - (var(--buttonSize) / 3.5));
-      // width: 100%;
+      width: calc(100% - (var(--widthOffset) / 2));
       max-height: 100%;
       min-height: var(--buttonSize);
       padding: 0.5rem;
-      // margin: 0 auto;
       resize: none;
       z-index: 7;
       outline: none;
@@ -68,22 +67,17 @@
       color: var(--whiteColor);
       transition: all var(--defaultTransitionTime) linear;
       border: none;
-      // border-right: 1rem solid red;
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 0;
-      border-right: 4px solid var(--borderChosenColor, rgba(0, 0, 0, 0));
+      border-radius: 0;
+      border-top-left-radius: var(--topBorderRadius);
+      border-top-right-radius: calc(
+        var(--topBorderRadius) - var(--widthOffset)
+      );
     }
 
     @media screen and (min-width: $desktopBreakpoint) {
       & > button {
         border-radius: 50%;
       }
-
-      // & > textarea {
-      //   // width: calc(100% - (var(--buttonSize) / 1.1));
-      // }
     }
   }
 }

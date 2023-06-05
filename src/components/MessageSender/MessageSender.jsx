@@ -86,6 +86,7 @@ export const MessageSender = ({ className }) => {
             style={{
               height: calcTextareaHeight(currentMessage),
               paddingRight: shouldEnterSend ? "0.5rem" : "5rem",
+              "--btnMultiplier": shouldEnterSend ? 0 : 1,
             }}
           />
 
@@ -98,8 +99,6 @@ export const MessageSender = ({ className }) => {
           </Button>
         </form>
       </section>
-
-      
     </>
   );
 };
