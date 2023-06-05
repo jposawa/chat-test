@@ -16,7 +16,7 @@ export const messagesListState = atom({
   default: [],
 });
 
-export const shouldEnterSendState = atom({
-  key: `${PREFIX}@shouldEnterSend`,
+export const sendWithReturnState = atom({
+  key: `${PREFIX}@sendWithReturn`,
   default: false,
 });

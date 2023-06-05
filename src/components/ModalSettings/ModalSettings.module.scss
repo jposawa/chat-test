@@ -39,5 +39,9 @@
         color: var(--whiteColor);
       }
     }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin: 0;
+    }
   }
 }

@@ -1,7 +1,7 @@
 import styles from "./ChatSettings.module.scss";
 import { useRecoilState } from "recoil";
 import {
-  shouldEnterSendState,
+  sendWithReturnState,
   themeState,
   usernameState,
 } from "../../shared/state";
@@ -15,8 +15,8 @@ import { Button } from "../Button";
 export const ChatSettings = ({ className }) => {
   const [username, setUsername] = useRecoilState(usernameState);
   const [activeTheme, setActiveTheme] = useRecoilState(themeState);
-  const [shouldEnterSend, setShouldEnterSend] =
-    useRecoilState(shouldEnterSendState);
+  const [sendWithReturn, setSendWithReturn] =
+    useRecoilState(sendWithReturnState);
   const [usernameInput, setUsernameInput] = React.useState(username);
 
   const handleThemeSwitch = () => {
@@ -27,7 +27,7 @@ export const ChatSettings = ({ className }) => {
   };
 
   const handleSwitchEnterSend = (checked) => {
-    setShouldEnterSend(checked);
+    setSendWithReturn(checked);
     saveSessionStorage("enterSend", checked);
   };
 
@@ -64,15 +64,18 @@ export const ChatSettings = ({ className }) => {
             placeholder="Your name"
             value={usernameInput}
             onChange={handleNameInputChange}
+            data-testid="inputSaveName"
           />
         </span>
 
         <Button
+          testId="btnSaveName"
           type="submit"
-          sameDimensionSize="2rem"
-          style={username === usernameInput ? { maxWidth: 0 } : undefined}
+          style={
+            username === usernameInput ? { transform: "scaleX(0)" } : undefined
+          }
         >
-          <CheckOutlined />
+          Save <CheckOutlined />
         </Button>
       </form>
 
@@ -99,7 +102,7 @@ export const ChatSettings = ({ className }) => {
         <label htmlFor="enterSend">Send with enter: </label>
         <Switch
           id="enterSend"
-          checked={shouldEnterSend}
+          checked={sendWithReturn}
           onChange={handleSwitchEnterSend}
           style={
             activeTheme === "darkTheme"
