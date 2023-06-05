@@ -51,7 +51,7 @@ export const MessagesList = ({
 
               <dl>
                 <dt>
-                  <b>{username}</b>
+                  <h5>{username}</h5>
                 </dt>
                 <dd>
                   {message}
