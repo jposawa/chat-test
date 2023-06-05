@@ -3,6 +3,7 @@
 .chatSettings {
   @include dFlex(column);
   align-items: flex-start;
+  gap: 2rem;
 
   input {
     width: 10rem;

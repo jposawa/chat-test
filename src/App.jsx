@@ -23,10 +23,7 @@ export default function App() {
     setUsername(sessionUsername || "User");
     setMessagesList(sessionMessages || []);
     setShouldEnterSend(sessionEnterSend);
-    
-    //I'm disabling this because I want it to run only on first Mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setActiveTheme, setMessagesList, setShouldEnterSend, setUsername]);
 
   return (
     <div className={`${styles[activeTheme]} ${styles.mainWrapper}`}>
