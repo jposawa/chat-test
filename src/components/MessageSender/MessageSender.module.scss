@@ -23,7 +23,7 @@
   }
 
   .messageWrapper {
-    --buttonSize: 5rem;
+    --buttonSize: 7rem;
 
     position: relative;
     width: 100%;
@@ -40,7 +40,7 @@
       right: 0;
       bottom: 0;
       left: auto;
-      font-size: 1.2em;
+      font-size: 1.6em;
       transition: all var(--defaultTransitionTime) linear;
       background: var(--secondaryColorDark);
       color: var(--whiteColor);
@@ -52,13 +52,14 @@
 
     & > textarea {
       --topBorderRadius: 10px;
-      --widthOffset: calc(var(--buttonSize) * var(--btnMultiplier, 1));
+      --width: calc(100% - (var(--buttonSize) / 1.2));
 
       position: relative;
-      width: calc(100% - (var(--widthOffset) / 2));
-      max-height: 100%;
+      width: var(--width);
+      max-height: 95%;
       min-height: var(--buttonSize);
       padding: 0.5rem;
+      margin-left: calc((100% - var(--width)) / 2);
       resize: none;
       z-index: 7;
       outline: none;
@@ -68,9 +69,15 @@
       border: none;
       border-radius: 0;
       border-top-left-radius: var(--topBorderRadius);
-      border-top-right-radius: calc(
-        var(--topBorderRadius) - var(--widthOffset)
-      );
+      border-top-right-radius: var(--topBorderRadius);
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 2%;
+
+      &>textarea {
+        border-radius: var(--topBorderRadius);
+      }
     }
   }
 }
