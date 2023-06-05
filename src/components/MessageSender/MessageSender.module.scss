@@ -24,7 +24,6 @@
 
   .messageWrapper {
     --buttonSize: 5rem;
-    --borderChosenColor: var(--borderColor, rgba(0, 0, 0, 0));
 
     position: relative;
     width: 100%;
@@ -47,7 +46,7 @@
       color: var(--whiteColor);
       z-index: 9;
       border: 4px solid !important;
-      border-color: var(--borderChosenColor, rgba(0, 0, 0, 0)) !important;
+      border-color: var(--bgColor, rgba(0, 0, 0, 0)) !important;
       border-radius: 50%;
     }
 
@@ -72,12 +71,6 @@
       border-top-right-radius: calc(
         var(--topBorderRadius) - var(--widthOffset)
       );
-    }
-
-    @media screen and (min-width: $desktopBreakpoint) {
-      & > button {
-        border-radius: 50%;
-      }
     }
   }
 }
